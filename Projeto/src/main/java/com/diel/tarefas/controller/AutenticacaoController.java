@@ -6,6 +6,7 @@ import com.diel.tarefas.domain.usuario.RegistrarInputDTO;
 import com.diel.tarefas.domain.usuario.Usuario;
 import com.diel.tarefas.infra.security.DadosTokenJWT;
 import com.diel.tarefas.infra.security.TokenService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
