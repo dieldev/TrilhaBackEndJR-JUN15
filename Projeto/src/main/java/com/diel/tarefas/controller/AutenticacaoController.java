@@ -6,6 +6,7 @@ import com.diel.tarefas.domain.usuario.RegistrarInputDTO;
 import com.diel.tarefas.domain.usuario.Usuario;
 import com.diel.tarefas.infra.security.DadosTokenJWT;
 import com.diel.tarefas.infra.security.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class AutenticacaoController {
         this.autenticacaoService = autenticacaoService;
     }
 
+    @Operation(summary = "Efetuar login", method = "POST")
+
     @PostMapping("/login")
     public ResponseEntity efetuarLogin(@RequestBody @Valid AutenticacaoInputDTO dados) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(dados.usuario(), dados.senha());
@@ -40,6 +43,7 @@ public class AutenticacaoController {
         return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 
+    @Operation(summary = "Registrar um novo usuário", method = "POST")
     @PostMapping("/registrar")
     public ResponseEntity registrarUsuario(@RequestBody @Valid RegistrarInputDTO dados) {
         var dadosUsuarioRegistrado = autenticacaoService.registrarUsuario(dados);
